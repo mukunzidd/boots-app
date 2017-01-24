@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170124072609) do
     t.string   "company"
     t.string   "model"
     t.integer  "size"
-    t.string   "realease"
+    t.string   "release"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

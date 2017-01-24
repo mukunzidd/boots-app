@@ -5,7 +5,7 @@ class CreateBoots < ActiveRecord::Migration[5.0]
       t.string :company
       t.string :model
       t.integer :size
-      t.string :realease
+      t.string :release
 
       t.timestamps
     end

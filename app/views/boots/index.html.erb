@@ -1,1 +1,10 @@
 <h1>Boots Listing</h1>
+
+<ul>
+	<% @boots.each do |boot| %>
+		<li><%=link_to boot.name, boot %> <br></li> 
+	<% end %>
+</ul>
+
+
+<%= link_to 'New Boot', new_boot_path %>

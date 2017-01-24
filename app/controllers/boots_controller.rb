@@ -1,42 +1,52 @@
 class BootsController < ApplicationController
-	before_action :find_boot, only: [:show, :update, :edit, :destroy]
 	def index
+    @boots = Boot.all.order("created_at DESC")    
+  end
 
-		@boots = Boot.all.order("created_at DESC")
-		
-	end
+  def show
+    @recipe = Recipe.find_by(id: params[:id])
+  end
 
-	def show
-		
-	end
+  def new
+    @boot = Boot.new
 
-	def new
-		@post = Boot.new
-	end
+  end
 
-	def create
-		@post = Boot.new(boots_params)		
-	end
+  def create
+    @boot = Boot.new(boot_params)
+    if @boot.save
+      redirect_to @boot
+    else
+      render 'new'
+    end
+  end
 
-	def edit
-		
-	end
+  def show
+    @boot = Boot.find(params[:id])    
+  end
 
-	def update
-		
-	end
+  def edit
+    @boot = Boot.find(params[:id])
+    
+  end
+  def update
+    @boot = Boot.find(params[:id])
 
-	def destroy
-		
-	end
+    if @boot.update(boot_params)
+      redirect_to @boot
+    else
+      render 'edit'
+    end
+  end
 
-	private
-		def find_boot
-			@boot = Boot.find(params[:id])
-		end
+  def destroy
+    @boot = Boot.find(params[:id])
+    @boot.destroy
+    redirect_to root_path       
+  end
 
-		def boots_params
-			params.require(:boot).permit(:name, :company, :model, :size, :release)
-		end
-
+  private
+    def boot_params
+      params.require(:boot).permit(:name, :company, :size, :model, :release)
+    end
 end
